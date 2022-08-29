@@ -5,8 +5,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import tweepy
 from textblob import TextBlob
-from utils import db_utils
-from app import engine, config
+from src.auth import engine, config
 
 
 # class with main logic
@@ -77,7 +76,6 @@ class SentimentAnalysis:
                 count_stats['negative'] += 1
             elif -1 < polarity <= -0.6:
                 count_stats['snegative'] += 1
-
 
             results.append({'tweet_id': tweet_id, 'text': text, 'clean_text': clean_text, 'tweet_time': time,
                             'polarity': polarity})
@@ -151,7 +149,7 @@ class SentimentAnalysis:
         plt.legend(patches, labels, loc="best")
         plt.axis('equal')
         plt.tight_layout()
-        strFile = "../static/image/pie_chart.png"
+        strFile = "static/image/pie_chart.png"
         if os.path.isfile(strFile):
             os.remove(strFile)  # Opt.: os.system("rm "+strFile)
         plt.savefig(strFile)

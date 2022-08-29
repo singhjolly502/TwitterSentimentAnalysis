@@ -8,7 +8,9 @@ def get_engine(db_config):
     db_pass, db_host, db_port = db_config['db_pass'], db_config['db_host'], int(db_config['db_port'])
     db_name, pool_size = db_config['db_name'], int(db_config['pool_size'])
 
-    sqlalchemy_database_uri = f"{db_type}+{db_driver}://{db_user}:{db_pass}@{db_host}/{db_name}"
+    # sqlalchemy_database_uri = f"{db_type}+{db_driver}://{db_user}:{db_pass}@{db_host}/{db_name}"
+    sqlalchemy_database_uri = "postgresql://mlyazxginfefer:5246a8f2618239c54320f201d2bd65f2a3c0d97d9a272fe196431909735189c8@ec2-54-85-56-210.compute-1.amazonaws.com:5432/ded1qrba7c21pt"
+
     # "postgresql+psycopg2://root:root@localhost:5432/sentiment_tweets"
     # sqlalchemy_database_uri = '%s+%s://%s:%s@%s:%s/%s' % (db_type, db_driver, db_user,
     #                                                       db_pass, db_host, db_port, db_name)
