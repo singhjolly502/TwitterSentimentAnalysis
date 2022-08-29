@@ -1,0 +1,41 @@
+.bg-nav{
+    background: #ff0084;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #33001b, #ff0084);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #33001b, #ff0084); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.bg-nav1{
+        background: #967BB6;/* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.mt-125{
+    margin-top:125px;
+}
+
+.carousel-item{
+		height: 34rem;
+		background: black;
+		color: white;
+		position: relative;
+		background-position: center;
+		background-size: cover;
+		}
+.carousel-caption{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-bottom: 10px;
+    }
+.overlay-image{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-bottom: 0px;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.4;
+  }

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/loginstyle.css') }}">
+      <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Sentiment Analysis</title>
+    </head>
+  <body class = "bg-nav">
+    <nav class = "navbar bg-nav1">
+      <a href ="" class="navbar-brand"> Twitter Sentiments Analysis App</a>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+        <h1 class="text-light display-4 mt-125" style="font-size:90px"> Know your people opinion!!! </h1>
+
+        </div>
+        <div class="col-md-4">
+          <div class="card mt-125">
+            <div class="card-body">
+              {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                  <div class="notification is-danger">
+                      {{ messages[0] }}. Go to <a href="{{ url_for('login') }}">login page</a>.
+                  </div>
+              {% endif %}
+              {% endwith %}
+              <form class="form" method="post" action="/add_user">
+                <label>User Name</label><br><input type="text" class="form-control" name="uname" required><br>
+                <label>Email</label><br><input type="email" class="form-control" name="uemail" required><br>
+                <label>Password</label><br><input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                                  title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                                                  class="form-control" name="upassword" required><br><br>
+                <input type="Submit" class="btn btn-primary btn-block btn-lg" value="Register">
+              </form>
+
+              <p>Already a user?<a href="/">Login </a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>
