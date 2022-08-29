@@ -5,4 +5,4 @@ if __name__ == "__main__":
     app.register_blueprint(sentiment_blueprint)
     print("======Here====")
     print(f"These are the valid URLs: {[str(p) for p in app.url_map.iter_rules()]}")
-    app.run(host='0.0.0.0', debug=True)
+    app.run(debug=True)

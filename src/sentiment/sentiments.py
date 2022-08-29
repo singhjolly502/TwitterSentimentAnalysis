@@ -13,15 +13,14 @@ from app import engine, config
 class SentimentAnalysis:
 
     def __init__(self):
-        self.tweets = []
-        self.tweetText = []
+        pass
 
     # function to clean the tweet
     def clean_tweet(self, text):
         text = re.sub(r'@[A-Za-z0-9]+', '', text)
         text = re.sub(r'#', '', text)
         text = re.sub(r'RT\s+', '', text)
-        text = re.sub(r'https?:\/\/\/S+', '', text)
+        text = re.sub(r'http\S+', '', text)
         return text
 
     # function to calculate percentage
@@ -40,34 +39,12 @@ class SentimentAnalysis:
         api = tweepy.API(auth, wait_on_rate_limit=True)
         return api
 
-        # input for term to be searched and how many tweets to search
-
-
-    def search_tweets(self, api, keyword, n_tweets, polarity="none"):
+    def search_tweets(self, api, keyword, n_tweets):
         # searching for tweets
         # searchTerm = input("Enter Keyword/Tag to search about: ")
         # NoOfTerms = int(input("Enter how many tweets to search: "))
-        n_tweets = int(n_tweets)
         tweets = tweepy.Cursor(api.search_tweets, q=keyword, lang="en").items(n_tweets)
-
-        return tweets, n_tweets
-
-        # Open/create a file to append data to
-        # csvFile = open('result.csv', 'a')
-
-        # Use csv writer
-        # csvWriter = csv.writer(csvFile)
-
-        # iterating through tweets fetched
-        # for tweet in tweets:
-        #     # Append to list
-        #     self.tweetText.append(self.clean_tweet(tweet.text))
-        #     analysis = TextBlob(tweet.text)
-        #     id = tweet.id
-        #     time = tweet.time
-        #     polarity += analysis.sentiment.polarity
-
-        # adding reaction of how people are reacting to find average later
+        return tweets
 
     def process_tweets(self, tweets, n_tweets):
         # def process_tweets(tweets_data):
@@ -150,7 +127,6 @@ class SentimentAnalysis:
         # Removing duplicate insertion of tweets into the DB
         tweets_table = config['DATABASE']['tweets_table']
         stats_table = config['DATABASE']['statistics_table']
-        sentiment_data = db_utils.clean_df_db_dups(sentiment_data, tweets_table, engine, dup_cols=['tweet_id'])
         sentiment_data.to_sql(tweets_table, engine, if_exists='append', index=False)
 
         stats = pd.DataFrame([stats])

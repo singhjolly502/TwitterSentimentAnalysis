@@ -2,7 +2,6 @@ import configparser
 import os
 from flask import flash, Flask, redirect, render_template, request, session, url_for
 from utils import db_utils
-from utils.authentication_utils import password_check
 
 
 app = Flask(__name__, static_folder="../static", template_folder="../templates")
@@ -35,6 +34,7 @@ def home():
     else:
         return redirect('/')
 
+
 @app.route('/register')
 def register():
     return render_template('register.html')
@@ -51,7 +51,7 @@ def add_user():
     # valid_password = password_check(password)
     # if valid_password:
     try:
-        results = engine.execute(f"""SELECT * from {users_table} WHERE email LIKE '{email}'""")
+        results = engine.execute(f"""SELECT * from {users_table} WHERE email='{email}'""")
         users = results.fetchall()
         print(f"======These are the users: {users}======")
         if len(users) > 0:
@@ -77,9 +77,10 @@ def login_validation():
     email = email.lower()
     password = request.form.get('Password')
     results = engine.execute(
-        f"""SELECT * from {users_table} WHERE email LIKE '{email}' AND password LIKE '{password}'""")
+        f"""SELECT * from {users_table} WHERE email='{email}' AND password='{password}'""")
     users = results.fetchall()
     # check if a user has already logged in
+    print(email,password)
     if len(users) > 0:
         session['user_id'] = users[0][0]
         return redirect('/home')
